@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/popper.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script>
+
+
+$(document).ready(function(){
+  var  r=parseInt($("#red").val()); 
+  var   b=parseInt($("#blue").val());
+  var  g=parseInt($("#green").val());
+  /*range changer*/
+  $("#red").change(function(){
+    r=parseInt($("#red").val()); 
+    $("#d_red").text(r);
+    $('#slide').css("background-color","rgb("+r+","+g+","+b+")");
+    $("#d_red").css("background-color","rgb("+r+",0,0)");
+    $("#num_red").val(r);
+    $("#slide").text("rgb("+r+","+g+","+b+")");
+  });
+  $("#blue").change(function(){
+    b=parseInt($("#blue").val());
+    $("#d_blue").text(b);
+    $('#slide').css("background-color","rgb("+r+","+g+","+b+")");
+    $("#d_blue").css("background-color","rgb(0,0,"+b+")");
+    $("#num_blue").val(b);
+    $("#slide").text("rgb("+r+","+g+","+b+")");
+  });
+  $("#green").change(function(){
+    g=parseInt($("#green").val());
+    $("#d_green").text(g);
+    $('#slide').css("background-color","rgb("+r+","+g+","+b+")");
+    $("#d_green").css("background-color","rgb(0,"+r+",0)");
+    $("#num_green").val(g);
+    $("#slide").text("rgb("+r+","+g+","+b+")");
+  });
+  
+  $("#parent").change(function(){
+    //alert("ok");
+    $("#slide").slideToggle();
+  });
+  /*change by number */
+  $("#num_red").on("click keydown keyup",function(){
+    r=parseInt($("#num_red").val()); 
+    console.log(r);
+
+    if (isNaN(r)) r=127;
+    if (r<0 && r>255) r=127;
+    
+    $("#d_red").text(r);
+    $('#slide').css("background-color","rgb("+r+","+g+","+b+")");
+    $("#d_red").css("background-color","rgb("+r+",0,0)");
+    $("#red").val(r);
+    $("#slide").text("rgb("+r+","+g+","+b+")");
+  });
+  $("#num_blue").on("click keydown keyup",function(){
+    b=parseInt($("#num_blue").val());
+    console.log(b);
+
+    if (isNaN(b)) b=127;
+    if (b<0 && b>255) b=127;
+    
+    $("#d_blue").text(b);
+    $('#slide').css("background-color","rgb("+r+","+g+","+b+")");
+    $("#d_blue").css("background-color","rgb(0,0,"+b+")");
+    $("#blue").val(b);
+    $("#slide").text("rgb("+r+","+g+","+b+")");
+  });
+  $("#num_green").on("click keydown keyup",function(){
+    g=parseInt($("#num_green").val());
+    console.log(g); 
+
+    if (isNaN(g)) g=127;
+    if (g<0 && g>255) g=127;
+    
+    $("#d_green").text(g);
+    $('#slide').css("background-color","rgb("+r+","+g+","+b+")");
+    $("#d_green").css("background-color","rgb(0,"+g+",0)");
+    $("#green").val(g);
+    $("#slide").text("rgb("+r+","+g+","+b+")");
+  });
+
+  $("#num_red , #num_blue , #num_green").focus(function(){
+    $(this).css("background","wheat");
+  })
+  $("#num_red , #num_blue , #num_green").blur(function(){
+  $(this).css("background","white");
+  })
+});
+
+
+</script>
+
+</head>
+<body>
+
+<form>
+    <div class="fram">
+      <div class="range">
+        <label for="vol">Red (between 0 and 255):</label>
+
+        <input type="range" id="red" name="red" min="0" max="255" value="127"> 
+        <input type="number" id="num_red" name="num_red" min="0" max="255" value="127" class="input">
+      
+      </div>
+      <br/>
+    
+      <div class="range">
+        <label for="vol">blue (between 0 and 255):</label>
+        <input type="range" id="blue" name="blue" min="0" max="255" > 
+        <input type="number" id="num_blue" name="num_blue" min="0" max="255" value="127" class="input">
+        
+      </div>
+      <br/>
+    
+      <div class="range">
+        <label for="vol">green (between 0 and 255):</label>
+        <input type="range" id="green" name="green" min="0" max="255" >
+        <input type="number" id="num_green" name="num_green" min="0" max="255" value="127" class="input">
+      
+      </div>
+    </div>
+  <br/>
+
+
+</form>
+
+<div id="parent"> 
+  <div id="d_red" class="w">red</div>
+    <div id="d_blue" class="w">blue</div>
+      <div id="d_green" class="w">green</div>
+      </div>
+  <div id="slide" > slide </div>
+
+</body>
+</html>
